@@ -37,17 +37,16 @@
   a{ color:inherit; }
   ::selection{ background:var(--brick-dim); }
 
-  .wrap{ max-width:700px; margin:0 auto; padding:0 28px; }
-
-  /* ---------- NAV ---------- */
+  /* ---------- NAV (mobile only — desktop uses the sidebar instead) ---------- */
   header.nav{
+    display:none;
     position:sticky; top:0; z-index:20;
     background:rgba(251,248,242,0.92);
     backdrop-filter:blur(6px);
     border-bottom:1px solid var(--rule);
   }
   .nav-inner{
-    max-width:700px; margin:0 auto; padding:14px 28px;
+    padding:14px 24px;
     display:flex; align-items:baseline; justify-content:space-between;
     gap:16px; flex-wrap:wrap;
   }
@@ -55,58 +54,75 @@
     font-family:'Fraunces', serif; font-weight:500; font-size:1.05rem;
     letter-spacing:0.01em; text-decoration:none;
   }
-  .nav-links{ display:flex; gap:22px; font-family:'IBM Plex Mono', monospace; font-size:0.78rem; letter-spacing:0.03em; }
-  .nav-links a{ text-decoration:none; color:var(--ink-soft); position:relative; }
+  .nav-links{ display:flex; gap:18px; font-family:'IBM Plex Mono', monospace; font-size:0.76rem; letter-spacing:0.03em; flex-wrap:wrap; }
+  .nav-links a{ text-decoration:none; color:var(--ink-soft); }
   .nav-links a:hover{ color:var(--brick); }
 
-  /* ---------- HERO ---------- */
-  .hero{
-    padding:64px 0 40px;
-    display:flex; align-items:center; gap:34px;
+  /* ---------- LAYOUT ---------- */
+  .layout{
+    max-width:980px; margin:0 auto;
+    padding:64px 28px 60px;
+    display:grid;
+    grid-template-columns:250px 1fr;
+    gap:64px;
+    align-items:start;
+  }
+
+  /* ---------- SIDEBAR ---------- */
+  .sidebar{
+    position:sticky; top:48px;
     opacity:0; animation:rise 0.7s ease-out 0.05s forwards;
   }
-  @media (prefers-reduced-motion:reduce){ .hero{ opacity:1; animation:none; } }
+  @media (prefers-reduced-motion:reduce){ .sidebar{ opacity:1; animation:none; } }
   @keyframes rise{ from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:translateY(0); } }
 
-  .hero-photo{
-    flex-shrink:0; width:176px; height:176px; border-radius:12px;
-    overflow:hidden; border:1px solid var(--rule);
-    box-shadow:0 1px 0 var(--rule);
+  .side-photo{
+    width:100%; aspect-ratio:1/1; border-radius:12px; overflow:hidden;
+    border:1px solid var(--rule); box-shadow:0 1px 0 var(--rule);
+    margin-bottom:20px;
   }
-  .hero-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
-
-  .hero-text{ min-width:0; }
+  .side-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
 
   .eyebrow{
-    font-family:'IBM Plex Mono', monospace; font-size:0.76rem;
-    letter-spacing:0.08em; text-transform:uppercase; color:var(--blueprint);
-    margin-bottom:12px;
+    font-family:'IBM Plex Mono', monospace; font-size:0.74rem;
+    letter-spacing:0.06em; text-transform:uppercase; color:var(--blueprint);
+    margin-bottom:8px; line-height:1.4;
   }
   .eyebrow::before{ content:"— "; color:var(--brick); }
 
   h1{
     font-family:'Fraunces', serif; font-weight:400; font-optical-sizing:auto;
-    font-size:clamp(2.2rem, 5.4vw, 3.1rem); line-height:1.02;
-    margin:0 0 14px; letter-spacing:-0.01em;
+    font-size:2rem; line-height:1.05;
+    margin:0 0 16px; letter-spacing:-0.01em;
   }
 
-  .hero-links{ display:flex; gap:18px; flex-wrap:wrap; font-family:'IBM Plex Mono', monospace; font-size:0.82rem; }
-  .hero-links a{
-    text-decoration:none; color:var(--ink); border-bottom:1px solid var(--brick);
-    padding-bottom:2px; transition:opacity .15s ease;
-  }
-  .hero-links a:hover{ opacity:0.6; }
+  .side-bio{ font-size:0.93rem; color:var(--ink-soft); margin:0 0 20px; }
+  .side-bio p{ margin:0 0 12px; }
+  .side-bio p:last-child{ margin-bottom:0; }
 
-  @media (max-width:560px){
-    .hero{ flex-direction:column; align-items:flex-start; gap:22px; }
+  .side-links{ display:flex; flex-direction:column; gap:8px; font-family:'IBM Plex Mono', monospace; font-size:0.8rem; margin-bottom:22px; }
+  .side-links a{
+    text-decoration:none; color:var(--ink);
+    border-bottom:1px solid transparent;
+    width:fit-content;
+    transition:opacity .15s ease, border-color .15s ease;
   }
+  .side-links a:hover{ border-color:var(--brick); }
+
+  .side-jump{ display:flex; flex-direction:column; gap:6px; font-family:'IBM Plex Mono', monospace; font-size:0.78rem; padding-top:16px; border-top:1px solid var(--rule); }
+  .side-jump a{ text-decoration:none; color:var(--ink-soft); width:fit-content; }
+  .side-jump a:hover{ color:var(--brick); }
+
+  /* ---------- MAIN CONTENT ---------- */
+  .content{ min-width:0; }
 
   /* ---------- SIGNATURE DIVIDER ---------- */
-  .split-divider{ margin:52px 0; }
+  .split-divider{ margin:44px 0; }
   .split-divider svg{ width:100%; height:34px; display:block; }
 
   /* ---------- SECTIONS ---------- */
-  section{ padding:6px 0 12px; }
+  section{ padding:6px 0 12px; scroll-margin-top:24px; }
+  .content > section:first-child{ padding-top:0; }
   .section-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:24px; }
   .section-num{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--brick); }
   h2{
@@ -114,14 +130,11 @@
     letter-spacing:-0.01em;
   }
 
-  p.lede{ color:var(--ink-soft); max-width:62ch; margin:0 0 16px; }
-  p.lede:last-child{ margin-bottom:0; }
-
   /* ---------- PAPERS ---------- */
   .paper{ padding:22px 0; border-top:1px solid var(--rule); }
   .paper:first-of-type{ border-top:none; padding-top:0; }
   .paper-title{
-    font-family:'Fraunces', serif; font-weight:500; font-size:1.14rem;
+    font-family:'Fraunces', serif; font-weight:500; font-size:1.2rem;
     margin:0 0 6px; line-height:1.35;
   }
   .paper-meta{
@@ -153,7 +166,7 @@
 
   /* ---------- FOOTER ---------- */
   footer{
-    margin-top:70px; padding:34px 0 60px; border-top:1px solid var(--rule);
+    max-width:980px; margin:0 auto; padding:34px 28px 60px; border-top:1px solid var(--rule);
     font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--ink-soft);
     display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
   }
@@ -164,9 +177,31 @@
     outline:2px solid var(--blueprint); outline-offset:3px; border-radius:2px;
   }
 
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:800px){
+    header.nav{ display:block; }
+    .layout{
+      grid-template-columns:1fr;
+      padding:0 24px 40px;
+      gap:0;
+    }
+    .sidebar{
+      position:static;
+      padding:36px 0 32px;
+      border-bottom:1px solid var(--rule);
+      margin-bottom:36px;
+      display:flex; align-items:center; gap:24px;
+    }
+    .side-photo{ width:110px; height:110px; flex-shrink:0; margin-bottom:0; }
+    .side-bio{ display:none; }
+    .side-jump{ display:none; }
+    .side-links{ flex-direction:row; flex-wrap:wrap; gap:14px; margin-bottom:0; }
+    h1{ font-size:1.8rem; margin-bottom:10px; }
+  }
+
   @media (max-width:520px){
     body{ font-size:16px; }
-    .hero{ padding:48px 0 30px; }
+    .sidebar{ flex-direction:column; align-items:flex-start; text-align:left; }
   }
 </style>
 </head>
@@ -176,7 +211,6 @@
   <div class="nav-inner">
     <a class="nav-name" href="#top">Allan Lee</a>
     <nav class="nav-links">
-      <a href="#about">About</a>
       <a href="#publications">Publications</a>
       <a href="#papers">Working Papers</a>
       <a href="#interests">Outside of Research</a>
@@ -185,96 +219,85 @@
   </div>
 </header>
 
-<main class="wrap" id="top">
+<div class="layout" id="top">
 
-  <section class="hero">
-    <div class="hero-photo">
+  <aside class="sidebar">
+    <div class="side-photo">
       <img src="headshot.jpg" alt="Portrait of Allan Lee">
     </div>
-    <div class="hero-text">
-      <div class="eyebrow">Princeton Program in Public Finance</div>
-      <h1>Allan Lee</h1>
-      <div class="hero-links">
-        <a href="mailto:allan.lee@princeton.edu">allan.lee@princeton.edu</a>
-        <a href="https://github.com/allanzylee" target="_blank" rel="noopener">github.com/allanzylee</a>
-        <a href="https://www.linkedin.com/in/allan-lee-2023/" target="_blank" rel="noopener">LinkedIn</a>
+    <div class="eyebrow">Princeton Program in Public Finance</div>
+    <h1>Allan Lee</h1>
+    <div class="side-bio">
+      <p>Pre-doctoral fellow working with Evan Soltas, at the intersection of labor and urban economics — focused on how corporate and urban policy shape labor outcomes.</p>
+      <p>BA Economics, University of Pennsylvania, 2023. Previously an analyst at Cornerstone Research.</p>
+    </div>
+    <div class="side-links">
+      <a href="mailto:allan.lee@princeton.edu">allan.lee@princeton.edu</a>
+      <a href="https://github.com/allanzylee" target="_blank" rel="noopener">github.com/allanzylee</a>
+      <a href="https://www.linkedin.com/in/allan-lee-2023/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="Allan_Lee_CV.pdf" target="_blank" rel="noopener">CV ↓</a>
+    </div>
+    <nav class="side-jump">
+      <a href="#publications">Publications</a>
+      <a href="#papers">Working Papers</a>
+      <a href="#interests">Outside of Research</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+
+    <section id="publications">
+      <div class="section-head">
+        <span class="section-num">01</span>
+        <h2>Publications</h2>
       </div>
-    </div>
-  </section>
 
-  <div class="split-divider" aria-hidden="true">
-    <svg viewBox="0 0 700 34" preserveAspectRatio="none">
-      <path d="M0,17 L260,17 L272,7 L400,27 L700,17" fill="none" stroke="#DED6C4" stroke-width="1.5"/>
-      <circle cx="272" cy="7" r="3" fill="#B5432B"/>
-    </svg>
-  </div>
+      <div class="paper">
+        <div class="paper-meta">Allan Lee, <a href="https://aurinoelisabetta.weebly.com/" target="_blank" rel="noopener">Elisabetta Aurino</a>, <a href="https://www.sharonwolf.com/" target="_blank" rel="noopener">Sharon Wolf</a></div>
+        <p class="paper-title">Child and Caregiver Food Insecurity Reports: Differential Associations with Child Skills</p>
+        <div class="paper-status">Accepted, Economics and Human Biology</div>
+        <details class="abstract">
+          <summary>Abstract</summary>
+          <p>Two-thirds of children in low-income countries are affected by food insecurity. Household food insecurity is typically measured using caregiver reports, but children's reports may shed light on experiences or domains of food insecurity that caregivers overlook. Using a novel validated measure of child-reported food insecurity, we examine how both child- and caregiver-reported food insecurity predicted children's academic, cognitive, and social-emotional skills in a large sample of children (N = 3,771, 5–17 years-of-age) and their caregivers in five northern regions of Ghana. Caregivers were nearly twice as likely as children to report food insecurity, with larger discrepancies across items reflecting moderate food insecurity manifestations. In value-added models that aim to control for unobserved heterogeneity that drives skills, caregiver-reported food insecurity predicted lower literacy and numeracy, especially among boys and older adolescents, whereas child-reported food insecurity did not predict any outcome. Potential mechanisms (child health, parental educational investments, children's aspirations, and caregiver psychological well-being) partially accounted for the observed associations. Findings suggest that caregiver reports better capture the constraints induced by food insecurity on children's learning in this context, which is important information for targeting interventions to support child development by tackling food insecurity.</p>
+        </details>
+      </div>
+    </section>
 
-  <section id="about">
-    <div class="section-head">
-      <span class="section-num">01</span>
-      <h2>About</h2>
-    </div>
-    <p class="lede">I am a pre-doctoral fellow at the Princeton Program in Public Finance, working with Evan Soltas. My research interests lie at the intersection of labor economics and urban economics, with a broader focus on the effects of corporate and urban policy on labor outcomes.</p>
-    <p class="lede">I graduated from the University of Pennsylvania in 2023 with a BA in Economics and a minor in East Asian Area Studies. Prior to Princeton, I was an analyst at Cornerstone Research.</p>
-  </section>
-
-  <div class="split-divider" aria-hidden="true">
-    <svg viewBox="0 0 700 34" preserveAspectRatio="none">
-      <path d="M0,17 L260,17 L272,7 L400,27 L700,17" fill="none" stroke="#DED6C4" stroke-width="1.5"/>
-      <circle cx="272" cy="7" r="3" fill="#2C5F6E"/>
-    </svg>
-  </div>
-
-  <section id="publications">
-    <div class="section-head">
-      <span class="section-num">02</span>
-      <h2>Publications</h2>
+    <div class="split-divider" aria-hidden="true">
+      <svg viewBox="0 0 700 34" preserveAspectRatio="none">
+        <path d="M0,17 L260,17 L272,7 L400,27 L700,17" fill="none" stroke="#DED6C4" stroke-width="1.5"/>
+        <circle cx="272" cy="7" r="3" fill="#B5432B"/>
+      </svg>
     </div>
 
-    <div class="paper">
-      <div class="paper-meta">Allan Lee, <a href="https://aurinoelisabetta.weebly.com/" target="_blank" rel="noopener">Elisabetta Aurino</a>, <a href="https://www.sharonwolf.com/" target="_blank" rel="noopener">Sharon Wolf</a></div>
-      <p class="paper-title">Child and Caregiver Food Insecurity Reports: Differential Associations with Child Skills</p>
-      <div class="paper-status">Accepted, Economics and Human Biology</div>
-      <details class="abstract">
-        <summary>Abstract</summary>
-        <p>Two-thirds of children in low-income countries are affected by food insecurity. Household food insecurity is typically measured using caregiver reports, but children's reports may shed light on experiences or domains of food insecurity that caregivers overlook. Using a novel validated measure of child-reported food insecurity, we examine how both child- and caregiver-reported food insecurity predicted children's academic, cognitive, and social-emotional skills in a large sample of children (N = 3,771, 5–17 years-of-age) and their caregivers in five northern regions of Ghana. Caregivers were nearly twice as likely as children to report food insecurity, with larger discrepancies across items reflecting moderate food insecurity manifestations. In value-added models that aim to control for unobserved heterogeneity that drives skills, caregiver-reported food insecurity predicted lower literacy and numeracy, especially among boys and older adolescents, whereas child-reported food insecurity did not predict any outcome. Potential mechanisms (child health, parental educational investments, children's aspirations, and caregiver psychological well-being) partially accounted for the observed associations. Findings suggest that caregiver reports better capture the constraints induced by food insecurity on children's learning in this context, which is important information for targeting interventions to support child development by tackling food insecurity.</p>
-      </details>
+    <section id="papers">
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <h2>Working Papers</h2>
+      </div>
+      <div class="placeholder">Coming soon.</div>
+    </section>
+
+    <div class="split-divider" aria-hidden="true">
+      <svg viewBox="0 0 700 34" preserveAspectRatio="none">
+        <path d="M0,17 L260,17 L272,7 L400,27 L700,17" fill="none" stroke="#DED6C4" stroke-width="1.5"/>
+        <circle cx="272" cy="7" r="3" fill="#2C5F6E"/>
+      </svg>
     </div>
-  </section>
 
-  <div class="split-divider" aria-hidden="true">
-    <svg viewBox="0 0 700 34" preserveAspectRatio="none">
-      <path d="M0,17 L260,17 L272,7 L400,27 L700,17" fill="none" stroke="#DED6C4" stroke-width="1.5"/>
-      <circle cx="272" cy="7" r="3" fill="#B5432B"/>
-    </svg>
-  </div>
+    <section id="interests">
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <h2>Outside of research</h2>
+      </div>
+      <div class="placeholder">More coming soon.</div>
+    </section>
 
-  <section id="papers">
-    <div class="section-head">
-      <span class="section-num">03</span>
-      <h2>Working Papers</h2>
-    </div>
-    <div class="placeholder">Coming soon.</div>
-  </section>
+  </main>
 
-  <div class="split-divider" aria-hidden="true">
-    <svg viewBox="0 0 700 34" preserveAspectRatio="none">
-      <path d="M0,17 L260,17 L272,7 L400,27 L700,17" fill="none" stroke="#DED6C4" stroke-width="1.5"/>
-      <circle cx="272" cy="7" r="3" fill="#2C5F6E"/>
-    </svg>
-  </div>
+</div>
 
-  <section id="interests">
-    <div class="section-head">
-      <span class="section-num">04</span>
-      <h2>Outside of research</h2>
-    </div>
-    <div class="placeholder">More coming soon.</div>
-  </section>
-
-</main>
-
-<footer class="wrap">
+<footer>
   <span>© 2026 Allan Lee</span>
   <span><a href="mailto:allan.lee@princeton.edu">allan.lee@princeton.edu</a> · <a href="mailto:allanzylee@gmail.com">allanzylee@gmail.com</a></span>
 </footer>
