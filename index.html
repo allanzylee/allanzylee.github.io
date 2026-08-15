@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Allan Lee</title>
+<meta name="description" content="Allan Lee — economics research on housing markets, education, and peer effects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340..600;1,9..144,340..500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:      #FBF8F2;
+    --paper-2:    #F3EEE3;
+    --ink:        #1C2523;
+    --ink-soft:   #565049;
+    --rule:       #DED6C4;
+    --brick:      #B5432B;
+    --brick-dim:  #B5432B99;
+    --blueprint:  #2C5F6E;
+    --blueprint-dim: #2C5F6E14;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:inherit; }
+
+  ::selection{ background:var(--brick-dim); }
+
+  .wrap{
+    max-width:700px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:20;
+    background:rgba(251,248,242,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--rule);
+  }
+  .nav-inner{
+    max-width:700px; margin:0 auto; padding:14px 28px;
+    display:flex; align-items:baseline; justify-content:space-between;
+    gap:16px; flex-wrap:wrap;
+  }
+  .nav-name{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:1.05rem;
+    letter-spacing:0.01em;
+    text-decoration:none;
+  }
+  .nav-links{ display:flex; gap:22px; font-family:'IBM Plex Mono', monospace; font-size:0.78rem; letter-spacing:0.03em; }
+  .nav-links a{ text-decoration:none; color:var(--ink-soft); position:relative; }
+  .nav-links a:hover{ color:var(--brick); }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding:76px 0 40px; opacity:0; animation:rise 0.7s ease-out 0.05s forwards; }
+  @media (prefers-reduced-motion:reduce){ .hero{ opacity:1; animation:none; } }
+  @keyframes rise{ from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:translateY(0); } }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.76rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--blueprint);
+    margin-bottom:14px;
+  }
+  .eyebrow::before{ content:"— "; color:var(--brick); }
+
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-optical-sizing:auto;
+    font-size:clamp(2.6rem, 6vw, 3.6rem);
+    line-height:1.02;
+    margin:0 0 18px;
+    letter-spacing:-0.01em;
+  }
+
+  .tagline{
+    font-size:1.14rem;
+    color:var(--ink-soft);
+    max-width:52ch;
+    margin:0 0 30px;
+  }
+
+  .hero-links{ display:flex; gap:18px; flex-wrap:wrap; font-family:'IBM Plex Mono', monospace; font-size:0.82rem; }
+  .hero-links a{
+    text-decoration:none; color:var(--ink);
+    border-bottom:1px solid var(--brick);
+    padding-bottom:2px;
+    transition:opacity .15s ease;
+  }
+  .hero-links a:hover{ opacity:0.6; }
+
+  /* ---------- SIGNATURE DIVIDER: a pacing-split line ----------
+     Reads as a runner's mile-split deviation from even pace —
+     flat, then a discontinuity, then it settles — a quiet nod
+     to the RDD/pacing work rather than decoration. */
+  .split-divider{ margin:52px 0; }
+  .split-divider svg{ width:100%; height:34px; display:block; }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding:6px 0 12px; }
+  .section-head{
+    display:flex; align-items:baseline; gap:12px; margin-bottom:24px;
+  }
+  .section-num{
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--brick);
+  }
+  h2{
+    font-family:'Fraunces', serif; font-weight:500; font-size:1.5rem; margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  p.lede{ color:var(--ink-soft); max-width:62ch; }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{ display:grid; grid-template-columns: 1fr; gap:22px; }
+  .fact{ display:flex; gap:14px; font-size:0.95rem; }
+  .fact dt{
+    font-family:'IBM Plex Mono', monospace; font-size:0.76rem; color:var(--ink-soft);
+    min-width:104px; padding-top:2px; flex-shrink:0;
+  }
+  .fact dd{ margin:0; }
+  dl.facts{ margin:26px 0 0; display:flex; flex-direction:column; gap:12px; }
+
+  /* ---------- PAPERS ---------- */
+  .paper{
+    padding:26px 0;
+    border-top:1px solid var(--rule);
+  }
+  .paper:first-of-type{ border-top:none; padding-top:0; }
+  .paper-title{
+    font-family:'Fraunces', serif; font-weight:500; font-size:1.18rem;
+    margin:0 0 6px; line-height:1.3;
+  }
+  .paper-meta{
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem;
+    color:var(--ink-soft); margin-bottom:12px;
+  }
+  .paper-meta .tag{
+    display:inline-block; color:var(--blueprint); background:var(--blueprint-dim);
+    padding:2px 7px; border-radius:3px; margin-right:8px; font-size:0.72rem;
+  }
+  details.abstract{ font-size:0.96rem; color:var(--ink-soft); }
+  details.abstract summary{
+    cursor:pointer; color:var(--brick); font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem; list-style:none; display:inline-flex; align-items:center; gap:6px;
+    user-select:none;
+  }
+  details.abstract summary::-webkit-details-marker{ display:none; }
+  details.abstract summary::before{
+    content:"+"; display:inline-block; width:1em; transition:transform .15s ease;
+  }
+  details.abstract[open] summary::before{ content:"–"; }
+  details.abstract p{ margin:12px 0 0; max-width:64ch; }
+
+  /* ---------- PLACEHOLDER BLOCKS ---------- */
+  .placeholder{
+    border:1px dashed var(--rule);
+    border-radius:6px;
+    padding:22px 24px;
+    color:var(--ink-soft);
+    font-size:0.92rem;
+    font-style:italic;
+  }
+
+  /* ---------- CV ---------- */
+  .cv-box{
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    flex-wrap:wrap;
+    border:1px solid var(--rule);
+    border-radius:8px;
+    padding:18px 22px;
+    background:var(--paper-2);
+  }
+  .cv-box .cv-label{ font-family:'IBM Plex Mono', monospace; font-size:0.82rem; color:var(--ink-soft); }
+  .cv-box a.btn{
+    text-decoration:none; font-family:'IBM Plex Mono', monospace; font-size:0.82rem;
+    background:var(--brick); color:var(--paper); padding:9px 16px; border-radius:5px;
+    transition:opacity .15s ease;
+  }
+  .cv-box a.btn:hover{ opacity:0.85; }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    margin-top:70px; padding:34px 0 60px;
+    border-top:1px solid var(--rule);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem; color:var(--ink-soft);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+  footer a{ color:var(--ink-soft); text-decoration:underline; text-underline-offset:3px; }
+  footer a:hover{ color:var(--brick); }
+
+  a:focus-visible, summary:focus-visible{
+    outline:2px solid var(--blueprint); outline-offset:3px; border-radius:2px;
+  }
+
+  @media (max-width:520px){
+    body{ font-size:16px; }
+    .hero{ padding:56px 0 30px; }
+    .fact{ flex-direction:column; gap:2px; }
+    .fact dt{ min-width:0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-name" href="#top">Allan Lee</a>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#papers">Working Papers</a>
+      <a href="#projects">Projects</a>
+      <a href="#cv">CV</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <section class="hero">
+    <div class="eyebrow">Economics · Princeton University</div>
+    <h1>Allan Lee</h1>
+    <p class="tagline">I study how regulation, information, and social context shape economic behavior — from zoning rules and housing costs to peer effects in how people pace their effort.</p>
+    <div class="hero-links">
+      <a href="mailto:al2705@princeton.edu">al2705@princeton.edu</a>
+      <a href="https://github.com/allanzylee" target="_blank" rel="noopener">github.com/allanzylee</a>
+    </div>
+  </section>
+
+  <div class="split-divider" aria-hidden="true">
+    <svg viewBox="0 0 700 34" preserveAspectRatio="none">
+      <path d="M0,17 L260,17 L272,7 L400,27 L700,17" fill="none" stroke="#DED6C4" stroke-width="1.5"/>
+      <circle cx="272" cy="7" r="3" fill="#B5432B"/>
+    </svg>
+  </div>
+
+  <section id="about">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2>About</h2>
+    </div>
+    <p class="lede">I'm a Senior Research Specialist in economics at Princeton University, working with <a href="#" style="text-decoration:underline; text-underline-offset:3px;">Evan Soltas</a> on housing markets and low-income housing finance. My work combines large administrative and transaction-level datasets — real estate listings, building permits, marathon finisher records — with quasi-experimental methods to understand how people and markets respond to constraints. I'm preparing to apply to economics PhD programs.</p>
+
+    <dl class="facts">
+      <div class="fact">
+        <dt>Now</dt>
+        <dd>Senior Research Specialist, Princeton University (since Jul 2025)</dd>
+      </div>
+      <div class="fact">
+        <dt>Before</dt>
+        <dd>Analyst, Cornerstone Research (2023–2025); Research Assistant, Penn Graduate School of Education</dd>
+      </div>
+      <div class="fact">
+        <dt>Education</dt>
+        <dd>B.A. Economics, minor in East Asian Area Studies — University of Pennsylvania, 2023 (Phi Beta Kappa, Yardley Prize)</dd>
+      </div>
+      <div class="fact">
+        <dt>Tools</dt>
+        <dd>R, Stata, Python, SQL</dd>
+      </div>
+    </dl>
+  </section>
+
+  <div class="split-divider" aria-hidden="true">
+    <svg viewBox="0 0 700 34" preserveAspectRatio="none">
+      <path d="M0,17 L260,17 L272,7 L400,27 L700,17" fill="none" stroke="#DED6C4" stroke-width="1.5"/>
+      <circle cx="272" cy="7" r="3" fill="#2C5F6E"/>
+    </svg>
+  </div>
+
+  <section id="papers">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2>Working Papers</h2>
+    </div>
+
+    <div class="paper">
+      <div class="paper-meta"><span class="tag">peer effects</span>Lee, A.</div>
+      <p class="paper-title">Running with the Crowd: Peer Effects Using Evidence from Marathon Runners</p>
+      <details class="abstract">
+        <summary>Abstract</summary>
+        <p>We exploit quasi-random variation in peer group assignment at the New York City Marathon — runners are assigned to waves based on a best-pace threshold, generating a regression discontinuity in peer composition at each cutoff — to estimate peer effects on individual performance and pacing strategy. Using finisher data from 2023–2025 (n=56,613), we find that assignment to a slower wave has no significant effect on overall finishing time, but meaningfully distorts within-race pacing: runners assigned to slower waves run 1% faster than their predicted pace in the first 5K but 1% slower in the second half. Effects are largest among runners without an affinity for round-number finish times, suggesting peer influence is strongest when runners lack independent pacing anchors. The findings suggest that grouping policies can shape not just total output, but the intertemporal allocation of effort within a performance period.</p>
+      </details>
+    </div>
+
+    <div class="paper">
+      <div class="paper-meta"><span class="tag">education</span>Lee, A.*, Aurino, S., Wolf, S.</div>
+      <p class="paper-title">Food Insecurity and Children's Cognitive and Socioemotional Skills: Whose Report Matters?</p>
+      <details class="abstract">
+        <summary>Abstract</summary>
+        <p>Household food insecurity is typically measured using caregiver reports, but children's own reports may capture experiences caregivers overlook. Using a novel validated measure of child-reported food insecurity alongside caregiver reports for 3,771 children (ages 5–17) across five regions of northern Ghana, we find caregivers were nearly twice as likely as children to report food insecurity. In value-added models, caregiver-reported food insecurity predicted lower literacy and numeracy — especially for boys and older adolescents — while child-reported food insecurity was not predictive of any outcome. Findings suggest caregiver reports better capture the constraints food insecurity places on children's learning in this context, with implications for how interventions are targeted.</p>
+      </details>
+    </div>
+
+    <div class="paper">
+      <div class="paper-meta"><span class="tag">higher ed</span>Bonilla, S.*, Lee, A., Minaya, V.</div>
+      <p class="paper-title">A Profile of Community College Students' Campus Engagement and Well-Being</p>
+      <details class="abstract">
+        <summary>Abstract</summary>
+        <p>Community colleges enroll a disproportionately high share of low-income, racially minoritized, first-generation, immigrant, and older students, but the sector has faced declining enrollment and rising competition over the past decade — challenges sharpened by the pandemic. This descriptive study characterizes a first-time, low-income community college population and examines the relationship between students' time use, engagement with campus resources, financial and mental well-being, and overall campus engagement, highlighting where policymakers and institutions might prioritize support.</p>
+      </details>
+    </div>
+  </section>
+
+  <div class="split-divider" aria-hidden="true">
+    <svg viewBox="0 0 700 34" preserveAspectRatio="none">
+      <path d="M0,17 L260,17 L272,7 L400,27 L700,17" fill="none" stroke="#DED6C4" stroke-width="1.5"/>
+      <circle cx="272" cy="7" r="3" fill="#B5432B"/>
+    </svg>
+  </div>
+
+  <section id="projects">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2>Projects</h2>
+    </div>
+    <div class="placeholder">More coming soon.</div>
+  </section>
+
+  <div class="split-divider" aria-hidden="true">
+    <svg viewBox="0 0 700 34" preserveAspectRatio="none">
+      <path d="M0,17 L260,17 L272,7 L400,27 L700,17" fill="none" stroke="#DED6C4" stroke-width="1.5"/>
+      <circle cx="272" cy="7" r="3" fill="#2C5F6E"/>
+    </svg>
+  </div>
+
+  <section id="cv">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2>CV</h2>
+    </div>
+    <div class="cv-box">
+      <span class="cv-label">Allan_Lee_CV.pdf</span>
+      <a class="btn" href="Allan_Lee_CV.pdf" target="_blank" rel="noopener">Download CV ↓</a>
+    </div>
+  </section>
+
+  <section id="interests">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2>Outside of research</h2>
+    </div>
+    <div class="placeholder">More coming soon.</div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <span>© 2026 Allan Lee</span>
+  <span><a href="mailto:al2705@princeton.edu">al2705@princeton.edu</a> · <a href="mailto:allanzylee@gmail.com">allanzylee@gmail.com</a></span>
+</footer>
+
+</body>
+</html>
