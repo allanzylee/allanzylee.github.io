@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Allan Lee</title>
 <meta name="description" content="Allan Lee — economics research at the intersection of labor and urban economics.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340..600;1,9..144,340..500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:      #FBF8F2;
@@ -28,7 +25,7 @@
     margin:0;
     background:var(--paper);
     color:var(--ink);
-    font-family:'IBM Plex Sans', sans-serif;
+    font-family:Arial, Helvetica, sans-serif;
     font-size:17px;
     line-height:1.65;
     -webkit-font-smoothing:antialiased;
@@ -51,10 +48,10 @@
     gap:16px; flex-wrap:wrap;
   }
   .nav-name{
-    font-family:'Fraunces', serif; font-weight:500; font-size:1.05rem;
+    font-weight:700; font-size:1.05rem;
     letter-spacing:0.01em; text-decoration:none;
   }
-  .nav-links{ display:flex; gap:18px; font-family:'IBM Plex Mono', monospace; font-size:0.76rem; letter-spacing:0.03em; flex-wrap:wrap; }
+  .nav-links{ display:flex; gap:18px; font-size:0.8rem; letter-spacing:0.02em; flex-wrap:wrap; }
   .nav-links a{ text-decoration:none; color:var(--ink-soft); }
   .nav-links a:hover{ color:var(--brick); }
 
@@ -79,28 +76,21 @@
   .side-photo{
     width:100%; aspect-ratio:1/1; border-radius:12px; overflow:hidden;
     border:1px solid var(--rule); box-shadow:0 1px 0 var(--rule);
-    margin-bottom:20px;
+    margin:0 auto 20px;
   }
-  .side-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
-
-  .eyebrow{
-    font-family:'IBM Plex Mono', monospace; font-size:0.74rem;
-    letter-spacing:0.06em; text-transform:uppercase; color:var(--blueprint);
-    margin-bottom:8px; line-height:1.4;
-  }
-  .eyebrow::before{ content:"— "; color:var(--brick); }
+  .side-photo img{ width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
 
   h1{
-    font-family:'Fraunces', serif; font-weight:400; font-optical-sizing:auto;
-    font-size:2rem; line-height:1.05;
-    margin:0 0 16px; letter-spacing:-0.01em;
+    font-weight:700;
+    font-size:2rem; line-height:1.1;
+    margin:0 0 16px;
   }
 
   .side-bio{ font-size:0.93rem; color:var(--ink-soft); margin:0 0 20px; }
   .side-bio p{ margin:0 0 12px; }
   .side-bio p:last-child{ margin-bottom:0; }
 
-  .side-links{ display:flex; flex-direction:column; gap:8px; font-family:'IBM Plex Mono', monospace; font-size:0.8rem; margin-bottom:22px; }
+  .side-links{ display:flex; flex-direction:column; gap:8px; font-size:0.85rem; margin-bottom:22px; }
   .side-links a{
     text-decoration:none; color:var(--ink);
     border-bottom:1px solid transparent;
@@ -112,41 +102,35 @@
   /* ---------- MAIN CONTENT ---------- */
   .content{ min-width:0; }
 
-  /* ---------- SIGNATURE DIVIDER ---------- */
-  .split-divider{ margin:44px 0; }
-  .split-divider svg{ width:100%; height:34px; display:block; }
-
   /* ---------- SECTIONS ---------- */
   section{ padding:6px 0 12px; scroll-margin-top:24px; }
   .content > section:first-child{ padding-top:0; }
-  .section-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:24px; }
-  .section-num{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--brick); }
+  .section-head{ margin-bottom:24px; padding-bottom:8px; border-bottom:1px solid var(--rule); }
   h2{
-    font-family:'Fraunces', serif; font-weight:500; font-size:1.5rem; margin:0;
-    letter-spacing:-0.01em;
+    font-weight:700; font-size:1.4rem; margin:0;
   }
 
   /* ---------- PAPERS ---------- */
   .paper{ padding:22px 0; border-top:1px solid var(--rule); }
   .paper:first-of-type{ border-top:none; padding-top:0; }
   .paper-title{
-    font-family:'Fraunces', serif; font-weight:500; font-size:1.2rem;
+    font-weight:700; font-size:1.1rem;
     margin:0 0 6px; line-height:1.35;
   }
   .paper-meta{
-    font-family:'IBM Plex Mono', monospace; font-size:0.78rem;
+    font-size:0.85rem;
     color:var(--ink-soft); margin-bottom:4px;
   }
   .paper-meta a{ color:var(--ink-soft); text-decoration:underline; text-underline-offset:2px; }
   .paper-meta a:hover{ color:var(--brick); }
   .paper-status{
-    font-family:'IBM Plex Mono', monospace; font-size:0.76rem;
+    font-size:0.85rem;
     color:var(--blueprint); margin-bottom:12px;
   }
   details.abstract{ font-size:0.96rem; color:var(--ink-soft); }
   details.abstract summary{
-    cursor:pointer; color:var(--brick); font-family:'IBM Plex Mono', monospace;
-    font-size:0.78rem; list-style:none; display:inline-flex; align-items:center; gap:6px;
+    cursor:pointer; color:var(--brick);
+    font-size:0.85rem; font-weight:700; list-style:none; display:inline-flex; align-items:center; gap:6px;
     user-select:none;
   }
   details.abstract summary::-webkit-details-marker{ display:none; }
@@ -163,7 +147,7 @@
   /* ---------- FOOTER ---------- */
   footer{
     max-width:980px; margin:0 auto; padding:34px 28px 60px; border-top:1px solid var(--rule);
-    font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--ink-soft);
+    font-size:0.85rem; color:var(--ink-soft);
     display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
   }
   footer a{ color:var(--ink-soft); text-decoration:underline; text-underline-offset:3px; }
@@ -186,17 +170,16 @@
       padding:36px 0 32px;
       border-bottom:1px solid var(--rule);
       margin-bottom:36px;
-      display:flex; align-items:center; gap:24px;
+      display:flex; flex-direction:column; align-items:center; text-align:center;
     }
-    .side-photo{ width:110px; height:110px; flex-shrink:0; margin-bottom:0; }
+    .side-photo{ width:140px; margin:0 auto 18px; }
     .side-bio{ display:none; }
-    .side-links{ flex-direction:row; flex-wrap:wrap; gap:14px; margin-bottom:0; }
+    .side-links{ flex-direction:row; flex-wrap:wrap; justify-content:center; gap:14px; margin-bottom:0; }
     h1{ font-size:1.8rem; margin-bottom:10px; }
   }
 
   @media (max-width:520px){
     body{ font-size:16px; }
-    .sidebar{ flex-direction:column; align-items:flex-start; text-align:left; }
   }
 </style>
 </head>
@@ -208,7 +191,7 @@
     <nav class="nav-links">
       <a href="#publications">Publications</a>
       <a href="#papers">Working Papers</a>
-      <a href="#interests">Outside of Research</a>
+      <a href="#wip">Work in Progress</a>
       <a href="Allan_Lee_CV.pdf" target="_blank" rel="noopener">CV</a>
     </nav>
   </div>
@@ -220,11 +203,9 @@
     <div class="side-photo">
       <img src="headshot.jpg" alt="Portrait of Allan Lee">
     </div>
-    <div class="eyebrow">Princeton Program in Public Finance</div>
     <h1>Allan Lee</h1>
     <div class="side-bio">
       <p>I am a pre-doctoral fellow at the Princeton Program in Public Finance, working with Evan Soltas. My research interests lie at the intersection of labor economics and urban economics, with a broader focus on the effects of corporate and urban policy on labor outcomes.</p>
-      <p>I graduated from the University of Pennsylvania in 2023 with a BA in Economics and a minor in East Asian Area Studies. Prior to Princeton, I was an analyst at Cornerstone Research.</p>
     </div>
     <div class="side-links">
       <a href="mailto:allan.lee@princeton.edu">allan.lee@princeton.edu</a>
@@ -238,7 +219,6 @@
 
     <section id="publications">
       <div class="section-head">
-        <span class="section-num">01</span>
         <h2>Publications</h2>
       </div>
 
@@ -253,32 +233,16 @@
       </div>
     </section>
 
-    <div class="split-divider" aria-hidden="true">
-      <svg viewBox="0 0 700 34" preserveAspectRatio="none">
-        <path d="M0,17 L260,17 L272,7 L400,27 L700,17" fill="none" stroke="#DED6C4" stroke-width="1.5"/>
-        <circle cx="272" cy="7" r="3" fill="#B5432B"/>
-      </svg>
-    </div>
-
     <section id="papers">
       <div class="section-head">
-        <span class="section-num">02</span>
         <h2>Working Papers</h2>
       </div>
       <div class="placeholder">Coming soon.</div>
     </section>
 
-    <div class="split-divider" aria-hidden="true">
-      <svg viewBox="0 0 700 34" preserveAspectRatio="none">
-        <path d="M0,17 L260,17 L272,7 L400,27 L700,17" fill="none" stroke="#DED6C4" stroke-width="1.5"/>
-        <circle cx="272" cy="7" r="3" fill="#2C5F6E"/>
-      </svg>
-    </div>
-
-    <section id="interests">
+    <section id="wip">
       <div class="section-head">
-        <span class="section-num">03</span>
-        <h2>Outside of research</h2>
+        <h2>Work in Progress</h2>
       </div>
       <div class="placeholder">More coming soon.</div>
     </section>
