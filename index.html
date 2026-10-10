@@ -125,19 +125,16 @@
   .paper-meta a:hover{ color:var(--brick); }
   .paper-title a{ color:inherit; text-decoration:none; border-bottom:1px solid var(--rule); transition:color .15s ease, border-color .15s ease; }
   .paper-title a:hover{ color:var(--brick); border-color:var(--brick); }
-  .paper-links{ font-size:0.85rem; margin-bottom:12px; }
-  .paper-links a{ color:var(--brick); text-decoration:underline; text-underline-offset:2px; }
-  .paper-links a:hover{ opacity:0.7; }
-  details.abstract{ font-size:0.96rem; color:var(--ink-soft); }
-  details.abstract summary{
-    cursor:pointer; color:var(--brick);
-    font-size:0.85rem; font-weight:700; list-style:none; display:inline-flex; align-items:center; gap:6px;
-    user-select:none;
+  .paper-buttons{ display:flex; flex-wrap:wrap; gap:8px; margin:2px 0 0; }
+  .chip{
+    font-family:inherit; font-size:0.78rem; line-height:1; color:var(--ink);
+    background:transparent; border:1px solid var(--ink-soft); border-radius:4px;
+    padding:6px 10px; cursor:pointer; text-decoration:none; display:inline-block;
+    transition:background .15s ease, color .15s ease, border-color .15s ease;
   }
-  details.abstract summary::-webkit-details-marker{ display:none; }
-  details.abstract summary::before{ content:"+"; display:inline-block; width:1em; }
-  details.abstract[open] summary::before{ content:"–"; }
-  details.abstract p{ margin:12px 0 0; max-width:64ch; }
+  .chip:hover{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+  .chip[aria-expanded="true"]{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+  .abstract-panel{ font-size:0.96rem; color:var(--ink-soft); margin:14px 0 0; max-width:64ch; }
 
   /* ---------- PLACEHOLDER ---------- */
   .placeholder{
@@ -154,7 +151,7 @@
   footer a{ color:var(--ink-soft); text-decoration:underline; text-underline-offset:3px; }
   footer a:hover{ color:var(--brick); }
 
-  a:focus-visible, summary:focus-visible{
+  a:focus-visible, button:focus-visible{
     outline:2px solid var(--blueprint); outline-offset:3px; border-radius:2px;
   }
 
@@ -222,13 +219,13 @@
       </div>
 
       <div class="paper">
-        <p class="paper-title"><a href="https://doi.org/10.1016/j.ehb.2026.101641" target="_blank" rel="noopener">&ldquo;Comparing Child and Caregiver Reports of Food Insecurity: Agreement and Associations with Child Skills&rdquo;</a></p>
+        <p class="paper-title"><a href="https://doi.org/10.1016/j.ehb.2026.101641" target="_blank" rel="noopener">Comparing Child and Caregiver Reports of Food Insecurity: Agreement and Associations with Child Skills</a></p>
         <div class="paper-meta">with <a href="https://aurinoelisabetta.weebly.com/" target="_blank" rel="noopener">Elisabetta Aurino</a> and <a href="https://www.sharonwolf.com/" target="_blank" rel="noopener">Sharon Wolf</a>. <em>Economics &amp; Human Biology</em>, Vol. 63 (December 2026): 101641.</div>
-        <div class="paper-links"><a href="https://github.com/allanzylee/Ghana-FI-Replication" target="_blank" rel="noopener">Replication package</a></div>
-        <details class="abstract">
-          <summary>Abstract</summary>
-          <p>Two-thirds of children in low-income countries are affected by food insecurity. Household food insecurity is typically measured using caregiver reports, but children’s reports may shed light on experiences or domains of food insecurity that caregivers overlook. Using a novel validated measure of child-reported food insecurity, we examine how both child- and caregiver-reported food insecurity predicted children's academic, cognitive, and social-emotional skills in a large sample of children (N = 3771, 5–17 years-of-age) and their caregivers in five northern regions of Ghana. Caregivers were nearly twice as likely as children to report food insecurity, with larger discrepancies across items reflecting moderate food insecurity manifestations. In value-added models that aim to control for unobserved heterogeneity that drives skills, caregiver-reported food insecurity predicted lower literacy and numeracy, especially among boys and older adolescents, whereas child-reported food insecurity did not predict any outcome. Potential mechanisms (child health, parental educational investments, children's aspirations, and caregiver psychological well-being) partially accounted for the observed associations. Findings suggest that caregiver reports better capture the constraints induced by food insecurity on children's learning in this context, which is important information for targeting interventions to support child development by tackling food insecurity.</p>
-        </details>
+        <div class="paper-buttons">
+          <button type="button" class="chip" aria-expanded="false" aria-controls="abs-ehb">Abstract</button>
+          <a class="chip" href="https://github.com/allanzylee/Ghana-FI-Replication" target="_blank" rel="noopener">Replication Package</a>
+        </div>
+        <p class="abstract-panel" id="abs-ehb" hidden>Two-thirds of children in low-income countries are affected by food insecurity. Household food insecurity is typically measured using caregiver reports, but children’s reports may shed light on experiences or domains of food insecurity that caregivers overlook. Using a novel validated measure of child-reported food insecurity, we examine how both child- and caregiver-reported food insecurity predicted children's academic, cognitive, and social-emotional skills in a large sample of children (N = 3771, 5–17 years-of-age) and their caregivers in five northern regions of Ghana. Caregivers were nearly twice as likely as children to report food insecurity, with larger discrepancies across items reflecting moderate food insecurity manifestations. In value-added models that aim to control for unobserved heterogeneity that drives skills, caregiver-reported food insecurity predicted lower literacy and numeracy, especially among boys and older adolescents, whereas child-reported food insecurity did not predict any outcome. Potential mechanisms (child health, parental educational investments, children's aspirations, and caregiver psychological well-being) partially accounted for the observed associations. Findings suggest that caregiver reports better capture the constraints induced by food insecurity on children's learning in this context, which is important information for targeting interventions to support child development by tackling food insecurity.</p>
       </div>
     </section>
 
@@ -258,5 +255,16 @@
   <span><a href="mailto:allan.lee@princeton.edu">allan.lee@princeton.edu</a> · <a href="mailto:allanzylee@gmail.com">allanzylee@gmail.com</a></span>
 </footer>
 
+<noscript><style>.abstract-panel[hidden]{ display:block !important; }</style></noscript>
+<script>
+  document.querySelectorAll('button.chip[aria-controls]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var panel = document.getElementById(btn.getAttribute('aria-controls'));
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      panel.hidden = open;
+    });
+  });
+</script>
 </body>
 </html>
